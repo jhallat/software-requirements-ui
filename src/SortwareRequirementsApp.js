@@ -14,12 +14,15 @@ function Project({ project }) {
 function ScopeList({scopeItems}) {
   return (
     <div>
-      { scopeItems.map((item) => <input value={item}/>) }
+      { scopeItems.map((item) => 
+        <div>
+          <input value={item}/>
+      </div> )}
     </div>
   );
 }
 
-function Scope() {
+function Scope({inScope, outScope}) {
   return (
     <div className="col-12">
       <div className="row">
@@ -32,13 +35,13 @@ function Scope() {
           <div>
             <label>In Scope</label>
           </div>
-          <textarea />
+          <ScopeList scopeItems={inScope} />
         </div>
         <div className="col-6">
           <div>
             <label>Out of Scope</label>
           </div>
-          <textarea />
+          <ScopeList scopeItems={outScope} />
         </div>
       </div>
     </div>
@@ -65,7 +68,7 @@ function SoftwareRequirementsApp({ project }) {
         <Project project={project} />
         <BusinessGoals />
         <StakeHolders />
-        <Scope />
+        <Scope inScope={project.inScope} outScope={project.outScope}/>
         <Constraints />
       </div>
     </div>
