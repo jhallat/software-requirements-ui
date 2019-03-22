@@ -15,8 +15,20 @@ const state = {
   project: project
 }
 
-ReactDOM.render(<SoftwareRequirementsApp {...state} />, document.getElementById('root'));
+function onAddScopeItem(type) {
+  if (type === 'in') {
+    state.project.inScope.push('');
+  }
+  if (type === 'out') {
+    state.project.outScope.push('');
+  }
+  render();
+}
 
+function render() {
+  ReactDOM.render(<SoftwareRequirementsApp {...state} onAddScopeItem={onAddScopeItem} />, document.getElementById('root'));
+}
+render();
 // If you want your app to work offline and load faster, you can change
 // unregister() to register() below. Note this comes with some pitfalls.
 // Learn more about service workers: https://bit.ly/CRA-PWA
